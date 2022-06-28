@@ -1,0 +1,35 @@
+{
+    "name": "delgont/ui",
+    "description" : "Delgont CMS UI",
+    "keywords": [
+        "Laravel CMS",
+        "laravel",
+        "Content Management System"
+    ],
+    "homepage": "https://github.com/delgont/delgont-ui",
+    "type" : "project",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name" : "Okello Stephen Omoding",
+            "email" : "okellostephenomoding@outlook.com"
+        }
+    ],
+    
+    "minimum-stability" : "dev",
+    "autoload": {
+        "psr-4": {
+            "Delgont\\Cms\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Delgont\\CmsUi\\DelgontUiServiceProvider"
+            ]
+        }
+    }
+}
