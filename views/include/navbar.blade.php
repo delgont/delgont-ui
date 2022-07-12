@@ -31,9 +31,9 @@
   
   
     <!-- Nav Item - Notifications -->
-    <li class="nav-item dropdown no-arrow mx-1 d-none">
+    <li class="nav-item dropdown no-arrow mx-1">
         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-bell fa-fw navbar-icon"></i>
+          <i class="bx bx-bell  bx-sm navbar-icon"></i>
           <!-- Counter - Alerts -->
           <span class="badge badge-danger badge-counter">3+</span>
         </a>
@@ -93,12 +93,12 @@
      
       <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="bx bx-cogs navbar-icon"></i>
+            <i class="bx bx-user bx-sm navbar-icon"></i>
           </a>
           <!-- Dropdown - Admin Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="{{ route('delgont.dashboard') }}">
-                <i class="fa fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="bx bx-cog mr-2 text-gray-400"></i>
                 System Settings
               </a>
               <a class="dropdown-item" href="{{ route('delgont.dashboard') }}">
@@ -118,25 +118,26 @@
       <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle p-2" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="mr-2 d-none d-lg-inline  medium username text-primary">{{ auth()->user()->name }}</span>
+                  
               <img class="navbar-img rounded-circle" src="{{ asset('img/avator.jpg') }}">
           </a>
           <!-- Dropdown - Admin Information -->
-          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="">
-                <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+          <div class="dropdown-menu dropdown-menu-right shadow-sm p-2" aria-labelledby="userDropdown">
+              <a class="dropdown-item" href="{{ route('delgont.account') }}">
+                <i class="bx bx-user text-gray-400"></i>
                 Account
               </a>
               <a class="dropdown-item" href="">
-                <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                <i class="bx bx-cog fa-sm text-gray-400"></i>
                 Settings
               </a>
-              <a class="dropdown-item" href="">
-                <i class="fa fa-list fa-sm fa-fw mr-2 text-gray-400 fs"></i>
+              <a class="dropdown-item" href="{{ route('delgont.account.activitylog') }}">
+                <i class="bx bx-menu  text-gray-400"></i>
                 Activity Log
               </a>
               <div class="dropdown-divider"></div>
               <a href="" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                  <i class="fa fa-sign-out text-gray-400"></i>
+                  <i class="bx bx-sign-out text-gray-400"></i>
                    Logout
               </a>
               <form id="logoutForm" action="{{ route('delgont.logout') }}" method="POST" style="display: none;">

@@ -4,22 +4,26 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
       <div class="sidebar-brand sidebar-brand-img">
-        <img src="{{ asset('img/logo.png') }}" alt="Lad Logo" class="brand-img" />
+        <img src="" alt="Lad Logo" class="brand-img" /> Delgont
       </div>
     </a>
   
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
   
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item sidebar-nav-item mt-2">
+    <li class="nav-item sidebar-nav-item">
       <a class="nav-link sidebar-nav-link" href="">
         <i class="bx bx-home-circle bx-sm sidebar-icon"></i>
         <span>Dashboard</span>
       </a>
     </li>
 
-    <li class="nav-item sidebar-nav-item ">
+  
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item sidebar-nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pages" aria-expanded="true" aria-controls="pages">
         <i class='bx bxl-html5 bx-sm sidebar-icon'></i>
         <span>Pages</span>
@@ -28,14 +32,9 @@
         <div class="bg-white py-2 collapse-inner rounded">
           <a href="{{route('delgont.pages')}}" class="collapse-item">{{ __('All Pages') }}</a>
           <a class="collapse-item dev" href="{{ route('delgont.pages.create') }}">{{ __('Create Page') }}</a>
-          <a class="collapse-item dev" href="">{{ __('Categories') }}</a>
         </div>
       </div>
     </li>
-
-  
-    <!-- Divider -->
-    <!--<hr class="sidebar-divider">-->
 
     <li class="nav-item sidebar-nav-item ">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#posts" aria-expanded="true" aria-controls="posts">
@@ -44,22 +43,27 @@
       </a>
       <div id="posts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item dev">{{ __('All Posts') }}</a>
-          <a class="collapse-item dev" href="">{{ __('Add New') }}</a>
-          <a class="collapse-item dev" href="">{{ __('Categories') }}</a>
+          <a class="collapse-item" href="{{route('delgont.posts')}}" >{{ __('All Posts') }}</a>
+          <a class="collapse-item" href="{{route('delgont.posts.create')}}">{{ __('Add New') }}</a>
         </div>
       </div>
     </li>
 
+     <!-- Categories -->
+     <li class="nav-item sidebar-nav-item">
+      <a class="nav-link" href="{{route('delgont.categories')}}">
+        <i class='bx bx-tag sidebar-icon'></i>
+        <span>Categories</span></a>
+    </li>
+
     <!-- Nav Item - Posts -->
-    @for ($i = 0; $i < 30; $i++)
     <li class="nav-item sidebar-nav-item">
       <a class="nav-link" href="">
         <i class='bx bx-images sidebar-icon'></i>
         <span>Media</span></a>
     </li>
-    @endfor
 
+    <hr class="sidebar-divider">
 
 <li class="nav-item sidebar-nav-item ">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pageManagerMenu" aria-expanded="true" aria-controls="pageManagerMenu">
@@ -68,10 +72,14 @@
   </a>
   <div id="pageManagerMenu" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-      <a class="collapse-item dev" href="">{{ __('Theme Options | Settings') }}</a>
+      @includeIf('dashboard.sidebar.collapseitems')
     </div>
   </div>
 </li>
+@includeIf('dashboard.sidebar.navitems')
+
+<hr class="sidebar-divider">
+
   
 
   
@@ -80,17 +88,23 @@
      <!-- Users Nav Item - Pages Collapse Menu -->
      <li class="nav-item sidebar-nav-item">
       <a class="nav-link sidebar-nav-link" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">
-        <i class='bx bx-user bx-sm sidebar-icon'></i>
+        <i class='bx bx-group sidebar-icon bx-sm'></i>
         <span>Users</span>
       </a>
       <div id="collapseUsers" class="collapse sidebar-collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Manage Users:</h6>
           <a class="collapse-item" href="{{route('delgont.users')}}"><span>All Users</span></a>
           <a class="collapse-item" href="{{route('delgont.users.create')}}"><i class='bx bxs-user-plus'></i> Create User</a>
         </div>
       </div>
     </li>
+
+        <!-- Nav Item - Posts -->
+        <li class="nav-item sidebar-nav-item">
+          <a class="nav-link" href="{{ route('delgont.account') }}">
+            <i class='bx bx-user sidebar-icon'></i>
+            <span>Acount</span></a>
+        </li>
 
     <!-- Settings -->
     <li class="nav-item sidebar-nav-item">
@@ -101,10 +115,7 @@
       <div id="collapseSettings" class="collapse sidebar-collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="py-2 collapse-inner rounded">
           <a class="collapse-item" href="">System Settings <i class="fa fa-mars float-right" style="font-size: 0.89rem;"></i></a>
-          <!-- CMS Settings -->
-          @if (config('lad.pagman', false))
-            <a class="collapse-item" href="">CMS Settings</a>
-          @endif
+          <a class="collapse-item" href="">CMS Settings</a>
         </div>
       </div>
     </li>

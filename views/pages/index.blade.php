@@ -3,13 +3,22 @@
 @section('title', 'Pages')
 @section('pageHeading', 'Pages')
 
+@section('actions-right')
+    <a href="" class="btn-outline-success text-success btn btn-sm p-1"><i class="bx bx-plus"></i> Create Page</a>
+@endsection
+
+@section('actions')
+    <a href="" class="btn-outline-success text-success btn btn-sm p-1"><i class="bx bx-tag"></i> Categories</a>
+    <a href="" class="btn-outline-danger text-danger btn btn-sm p-1"><i class="bx bx-trash"></i><span class="badge badge-danger badge-counter">7</span></a>
+@endsection
+
 @section('content')
 
 <section class="page-section mt-4">
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-10">
+            <div class="col-lg-11">
                 <div class="card">
                     <div class="card-body p-2">
                         @if (count($pages))
@@ -35,7 +44,7 @@
                                                     <input type="checkbox">
                                                 </td>
                                                 <td>{{$page->page_key}}</td>
-                                                <td>{{$page->page_title}}</td>
+                                                <td>{{str_limit($page->page_title, 20)}}</td>
                                                 <td>{{ ($page->author != null) ? $page->author->name : 'System' }}</td>
                                                 <td>
                                                     @if (count($page->categories))
@@ -48,8 +57,8 @@
                                                 <td>{{$page->updated_at}}</td>
                                                 <td>{{ ($page->updatedBy != null) ? $page->updatedBy->name : 'System' }}</td>
                                                 <td>
-                                                    <a href="{{route('delgont.pages.edit', ['id' => $page->id])}}" class=""><i class='bx bxs-edit bx-sm'></i></a>
-                                                    <a href="" class="btn btn-sm btn-danger">Delete</a>
+                                                    <a href="{{route('delgont.pages.edit', ['id' => $page->id])}}" class="btn btn-sm btn-primary"><i class='bx bx-edit'></i></a>
+                                                    <a href="" class="btn btn-sm btn-danger"><i class="bx bx-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

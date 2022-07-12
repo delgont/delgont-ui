@@ -1,62 +1,28 @@
-@extends(config('pagman.layout', 'pagman::core.layouts.master'))
+@extends('delgont::layout.master')
 
 @section('title', 'Categories')
 @section('pageHeading', 'Categories')
-
-@section('pageActions')
-<div class="dropdown d-inline mr-2">
-    <a class="dropdown-toggle" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-                <i class="fa fa-folder"></i> Posts
-    </a>
-    <div class="dropdown-menu shadow" aria-labelledby="triggerId">
-        <a class="dropdown-item" href="{{ route('pagman.posts') }}">Posts</a>
-        <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Quick Access</h6>
-    </div>
-</div>
-<div class="dropdown d-inline mr-5">
-    <a class="dropdown-toggle" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-                <i class="fa fa-plus"></i> Create Post
-    </a>
-    <div class="dropdown-menu shadow" aria-labelledby="triggerId">
-        <a class="dropdown-item" href="{{ route('pagman.posts.create') }}">Standard Post</a>
-        <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Pages</h6>
-        <a class="dropdown-item" href="{{ route('pagman.pages.create') }}">Create Page</a>
-        <a class="dropdown-item" href="{{ route('pagman.pages') }}">Pages</a>
-
-       
-    </div>
-</div>
-@endsection
-
-@section('requiredJs')
-<script src="{{ asset('pagman/js/pagman.js') }}" defer></script>
-@endsection
-
-@section('requiredCss')
-<link href="{{ asset('pagman/css/pagman.css') }}" rel="stylesheet">
-@endsection
-
-
 
 
 @section('content')
 <section class="mt-4">
     <div class="container-fluid">
         <div class="row">
-           
+
             <div class="col-lg-9">
                 <div class="card">
                     <div class="card-body">
+                        <div class="alert alert-primary alert-dismissible" role="alert">
+                            Categories help you group your content such as — pages, posts, users & media. eg you may have blog posts under diferent categories.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
                         @if (count($categories))
                             <table class="table table-borderless table-inverse table-responsive">
                                 <thead class="thead-inverse">
                                     <tr>
                                         <th>Name</th>
                                         <th>Description</th>
+                                        <th>pages</th>
                                         <th>Posts</th>
                                         <th>Actions</th>
                                     </tr>
@@ -66,10 +32,11 @@
                                             <tr>
                                                 <td scope="row">{{ $category->name }}</td>
                                                 <td>{{ ($category->description) ? $category->description : 'No description' }}</td>
+                                                <td>{{ $category->pages_count }}</td>
                                                 <td>{{ $category->posts_count }}</td>
                                                 <td>
-                                                    <a href="{{ route('pagman.categories.destroy', ['id' => $category->id]) }}" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
-                                                    <a href="{{ route('pagman.categories.edit', ['id' => $category->id]) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
+                                                    <a href="{{ route('delgont.categories.destroy', ['id' => $category->id]) }}" class="btn btn-sm btn-danger"><i class="bx bx-trash"></i></a>
+                                                    <a href="{{ route('delgont.categories.edit', ['id' => $category->id]) }}" class="btn btn-sm btn-primary"><i class="bx bx-edit"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -85,7 +52,7 @@
             <div class="col-lg-3">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{route('pagman.categories.store')}}" method="POST" autocomplete="off" id="createCategoryForm">
+                        <form action="{{route('delgont.categories.store')}}" method="POST" autocomplete="off" id="createCategoryForm">
                             @csrf
                             <label for="name">Category Name</label>
                             <input type="text" name="name" class="form-control" placeholder="Category Name" value="{{ old('name') }}" id="name" />

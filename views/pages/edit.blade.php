@@ -20,12 +20,12 @@
 
             <!-- page title, name and content -->
             <div class="col-lg-6">
-                <div class="car">
-                    <div class="card-">
+                <div class="card">
+                    <div class="card-body">
                         <label for="title">Page Title</label>
                         <textarea name="page_title" id="title" class="form-control" placeholder="Page Title">{{ (old('page_title')) ? old('page_title') : $page->page_title }}</textarea>
                         <small class="text-danger page-title-error">{{ $errors->first('page_title') }}</small>
-                        <textarea name="page_content" id="content" class="form-control mt-4" cols="30" rows="10" placeholder="Page Body">{{ (old('page_content')) ? old('page_content') : $page->page_content }}</textarea>
+                        <textarea name="page_content" id="editor" class="form-control mt-4" cols="30" rows="10" placeholder="Page Body">{{ (old('page_content')) ? old('page_content') : $page->page_content }}</textarea>
                     </div>
                 </div>
             </div>

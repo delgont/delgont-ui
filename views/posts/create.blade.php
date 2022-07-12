@@ -1,49 +1,20 @@
-@extends(config('pagman.layout', 'pagman::core.layouts.master'))
+@extends('delgont::layout.master')
 
 @section('title', 'Posts | Create')
 @section('pageHeading', 'Create Post')
 
-@section('pageActions')
-<div class="dropdown d-inline mr-2">
-    <a class="dropdown-toggle" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-                <i class="fa fa-file-o"></i> Pages
-    </a>
-    <div class="dropdown-menu" aria-labelledby="triggerId">
-        <h6 class="dropdown-header">Pages</h6>
-        <a class="dropdown-item" href="{{ route('pagman.pages.create') }}">Create Page</a>
-        <a class="dropdown-item" href="{{ route('pagman.pages') }}">Pages</a>
-
-    </div>
-</div>
-<div class="dropdown d-inline mr-5">
-    <a class="dropdown-toggle" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-                <i class="fa fa-folder"></i> Posts
-    </a>
-    <div class="dropdown-menu shadow" aria-labelledby="triggerId">
-        <a class="dropdown-item" href="{{ route('pagman.posts') }}">All Posts</a>
-        <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Quick Access</h6>
-    </div>
-</div>
-@endsection
-
 @section('requiredJs')
-<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js" defer></script>
-<script src="{{ asset('pagman/js/pagman.js') }}" defer></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 @endsection
 
 
-@section('requiredCss')
-<link href="{{ asset('pagman/css/pagman.css') }}" rel="stylesheet">
-@endsection
+
 
 @section('content')
 <section class="mt-4">
     <div class="container-fluid">
         <!-- Create Post Form -->
-        <form action="{{ route('pagman.posts.store') }}" class="row" id="createStandardPostForm" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('delgont.posts.store') }}" class="row" id="createPostForm" method="POST" enctype="multipart/form-data">
             @csrf
            
             <!-- Column 1 -->
@@ -99,9 +70,8 @@
                 </div>
                 <div class="card shadow-sm">
                     <div class="card-body p-0">
-                        <textarea name="post_content" id="content" class="form-control" cols="30" rows="10" >
-                            {{ old('post_content') }}
-                        </textarea>
+                        <textarea name="page_content" id="editor" class="form-control mt-4" cols="30" rows="10" placeholder="Page Body">{{ old('page_content') }}</textarea>
+
                     </div>
                 </div>
             </div>

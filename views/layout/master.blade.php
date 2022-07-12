@@ -40,6 +40,29 @@
             <!-- Page Content -->
             <div id="content-wrapper" class=" content-wrapper d-flex flex-column body-bg-color">
                 <div class="content" id="content">
+                    <div class="alerts mt-1">
+                        <div class="alert {{ session('deleted')  ? 'alert-warning' : 'alert-success' }} alert-dismissible fade {{ (session('updated') || session('deleted') || session('created') || session('edited') || session('success')) ? 'show' : '' }}" role="alert" id="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong>
+                              Operation Was Succesful: 
+                          </strong>
+                          <span class="message-holder">
+                             @if (session('updated'))
+                                {{ session('updated') }}
+                            @elseif(session('created'))
+                                {{ session('created') }}
+                            @elseif(session('edited'))
+                                {{ session('edited') }}
+                            @elseif(session('deleted'))
+                                {{ session('deleted') }}
+                            @elseif(session('success'))
+                                {{ session('success') }}
+                            @endif
+                          </span>
+                        </div>
+                    </div>
                     <!-- navbar =-->
                     <header class="header container-fluid navbar-wrapper" id="header">
                         @include('delgont::include.navbar')
@@ -47,11 +70,13 @@
                     <!-- //navbar -->
 
                     <!-- Page Heading -->
-                      <div class="container-fluid">
+                      <div class="container-fluid mt-4">
                           <div class="row">
                               <div class="col-12 col-lg-3"><h1 class="h1 page-heading mt-3">@yield('pageHeading')</h1></div>
-                              <div class="col-12 col-lg-6  page-actions">@yield('pageActions')</div>
-                              <div class="col-lg-3">@yield('right')</div>
+                              <div class="col-lg-7 text-right mt-1">@yield('actions')</div>
+                              <div class="col-lg-2 mt-1 text-right">
+                                @yield('actions-right')
+                              </div>
                           </div>
                       </div>
 
