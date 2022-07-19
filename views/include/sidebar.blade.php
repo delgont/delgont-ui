@@ -108,13 +108,13 @@
 
     <!-- Settings -->
     <li class="nav-item sidebar-nav-item">
-      <a class="nav-link sidebar-nav-link" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseUsers">
+      <a class="nav-link sidebar-nav-link" href="{{ route('delgont.settings.general') }}" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseUsers">
         <i class='bx bx-cog sidebar-icon bx-sm'></i>
         <span>Settings</span>
       </a>
       <div id="collapseSettings" class="collapse sidebar-collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="py-2 collapse-inner rounded">
-          <a class="collapse-item" href="">System Settings <i class="fa fa-mars float-right" style="font-size: 0.89rem;"></i></a>
+          <a class="collapse-item" href="{{ route('delgont.settings.general') }}">System Settings <i class="fa fa-mars float-right" style="font-size: 0.89rem;"></i></a>
           <a class="collapse-item" href="">CMS Settings</a>
         </div>
       </div>

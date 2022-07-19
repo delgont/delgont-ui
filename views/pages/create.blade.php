@@ -50,16 +50,31 @@
                     <div class="card-body">
 
                         <!-- Page Key -->
-                        @if (count($page_keys))
-                        <label for="pageKey">Page Key <small>Unique Identifier</small></label>
-                        <select name="page_key" id="" class="form-control">
-                            <option value="0" selected>{{ _('Select Or Ignore') }}</option>
-                            @for ($i = 0; $i < count($page_keys); $i++)
-                                <option value="{{ $page_keys[$i] }}">{{ _($page_keys[$i]) }}</option>
-                            @endfor
-                        </select>
-                        <small class="text-danger page-key-error-holder">{{ $errors->first('page_key') }}</small>
-                        @endif
+                        @switch(option('page_key_mode'))
+                            @case('strict')
+                                 @if (count($page_keys))
+                                    <label for="pageKey">Page Key <small>Strict Mode</small></label>
+                                    <select name="page_key" id="" class="form-control">
+                                        <option value="ignored" selected>{{ _('Select Or Ignore') }}</option>
+                                        @for ($i = 0; $i < count($page_keys); $i++)
+                                            <option value="{{ $page_keys[$i] }}">{{ _($page_keys[$i]) }}</option>
+                                        @endfor
+                                    </select>
+                                    <small class="text-danger page-key-error-holder">{{ $errors->first('page_key') }}</small>
+                                @endif
+                                @break
+                            @case('custom')
+                                <label for="customPageKey">Page Key <small>Custom Mode</small></label>
+                                <input type="text" name="page_key" id="customPageKey" placeholder="Enter Page Key" class="form-control" />
+                                @break
+                            @default
+                                <label for="bothPageKeyMode">Page Key <small>Both Custom & Strict Mode</small></label>
+                                <input type="text" name="page_key" id="bothPageKeyMode" placeholder="Enter Page Key" class="form-control" />
+                                @break
+
+                                
+                        @endswitch
+                       
                        
 
                         <!-- page Extract Text -->
@@ -70,14 +85,19 @@
                             Extract Text are optional hand-crafted summaries of your page content that can be used in your website
                         </small>
 
-                        <h6 class="text-capitalize mt-2">Post Type</h6>
-                        @if(count($postTypes))
+                        @if (option('associate_page_with_posts'))
+                            <h6 class="text-capitalize mt-2">Post Type</h6>
+                            @if(count($postTypes))
                             <select name="post_type" id="" class="form-control text-capitalize">
                                 @for($i = 0; $i < count($postTypes); $i++)
                                     <option value="{{$postTypes[$i]}}">{{$postTypes[$i]}}</option>
                                 @endfor
                             </select>
+                            @endif
+                        @else
+                            
                         @endif
+                        
 
                         <!-- Categorize you page -->
                         <h6 class="mb-2 text-capitalize mt-2">Categorize your Page</h6>
